@@ -1,4 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import styles from './Product.module.css';
 
@@ -20,6 +22,9 @@ const Product = (props) => {
         <p>
           <small>Only: {stock} left in stock - Order Soon</small>
         </p>
+        <button className={styles.cartButton} type="button">
+          <FontAwesomeIcon icon={faShoppingCart} /> add to cart
+        </button>
       </div>
     </div>
   );
