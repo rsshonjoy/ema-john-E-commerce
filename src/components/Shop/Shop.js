@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import fakeData from '../../fakeData';
+import { addToDatabaseCart } from '../../utilities/databaseManager';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import styles from './Shop.module.css';
@@ -12,7 +13,7 @@ const Shop = () => {
   const handleAddProduct = (product) => {
     const newCart = [...cart, product];
     setCart(newCart);
-    console.log('product added');
+    addToDatabaseCart(product.key, 1);
   };
   return (
     <div className={styles.shopContainer}>
