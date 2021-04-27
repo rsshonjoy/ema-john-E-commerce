@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import fakeData from '../../fakeData';
+import happyImage from '../../images/giphy.gif';
 import {
   getDatabaseCart,
   processOrder,
@@ -12,6 +13,7 @@ import styles from './Review.module.css';
 
 const Review = () => {
   const [cart, setCart] = useState([]);
+  const [orderPlaced, setOrderPlaced] = useState(false);
   const removeProduct = (productKey) => {
     console.log('remove clicked', productKey);
     const newCart = cart.filter((product) => product.key !== productKey);
@@ -20,6 +22,7 @@ const Review = () => {
   };
   const handlePlaceOrder = () => {
     setCart([]);
+    setOrderPlaced(true);
     processOrder();
   };
   useEffect(() => {
@@ -32,12 +35,17 @@ const Review = () => {
     });
     setCart(cartProduct);
   }, []);
+  let thankYou;
+  if (orderPlaced) {
+    thankYou = <img src={happyImage} alt="" />;
+  }
   return (
     <div className={styles.reviewContainer}>
       <div className={styles.productContainer}>
         {cart.map((product) => (
           <ReviewItem key={product.key} product={product} removeProduct={removeProduct} />
         ))}
+        {thankYou}
       </div>
       <div>
         <Cart cart={cart}>
