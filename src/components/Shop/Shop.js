@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import fakeData from '../../fakeData';
 import { addToDatabaseCart, getDatabaseCart } from '../../utilities/databaseManager';
 import Cart from '../Cart/Cart';
@@ -53,7 +54,13 @@ const Shop = () => {
         ))}
       </div>
       <div>
-        <Cart cart={cart} />
+        <Cart cart={cart}>
+          <Link to="/review">
+            <button type="button" className={styles.cartButton}>
+              Order Review
+            </button>
+          </Link>
+        </Cart>
       </div>
     </div>
   );

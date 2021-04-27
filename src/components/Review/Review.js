@@ -31,7 +31,11 @@ const Review = () => {
         ))}
       </div>
       <div>
-        <Cart cart={cart} />
+        <Cart cart={cart}>
+          <button type="button" className={styles.cartButton}>
+            Place Order
+          </button>
+        </Cart>
       </div>
     </div>
   );
