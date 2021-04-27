@@ -7,7 +7,7 @@ import styles from './Product.module.css';
 
 const Product = (props) => {
   const { img, name, seller, price, stock, key } = props.product;
-  console.log(props);
+  // console.log(props);
   return (
     <div className={styles.product}>
       <div>
