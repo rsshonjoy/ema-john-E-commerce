@@ -1,3 +1,5 @@
+/* eslint-disable import/no-cycle */
+import { createContext, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Inventory from './components/Inventory/Inventory';
@@ -8,9 +10,13 @@ import Review from './components/Review/Review';
 import Shipment from './components/Shipment/Shipment';
 import Shop from './components/Shop/Shop';
 
+export const UserContext = createContext();
+
 function App() {
+  const [loggedInUser, setLoggedInUser] = useState({});
+
   return (
-    <div>
+    <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
       <Header />
       <Router>
         <Switch>
@@ -40,7 +46,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
-    </div>
+    </UserContext.Provider>
   );
 }
 
