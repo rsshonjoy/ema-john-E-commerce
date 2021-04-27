@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import fakeData from '../../fakeData';
-import { getDatabaseCart, removeFromDatabaseCart } from '../../utilities/databaseManager';
+import {
+  getDatabaseCart,
+  processOrder,
+  // eslint-disable-next-line prettier/prettier
+  removeFromDatabaseCart
+} from '../../utilities/databaseManager';
 import Cart from '../Cart/Cart';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import styles from './Review.module.css';
@@ -12,6 +17,10 @@ const Review = () => {
     const newCart = cart.filter((product) => product.key !== productKey);
     setCart(newCart);
     removeFromDatabaseCart(productKey);
+  };
+  const handlePlaceOrder = () => {
+    setCart([]);
+    processOrder();
   };
   useEffect(() => {
     const savedCart = getDatabaseCart();
@@ -32,7 +41,7 @@ const Review = () => {
       </div>
       <div>
         <Cart cart={cart}>
-          <button type="button" className={styles.cartButton}>
+          <button type="button" onClick={handlePlaceOrder} className={styles.cartButton}>
             Place Order
           </button>
         </Cart>
