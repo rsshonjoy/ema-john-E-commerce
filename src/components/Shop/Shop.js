@@ -13,7 +13,9 @@ const Shop = () => {
   const handleAddProduct = (product) => {
     const newCart = [...cart, product];
     setCart(newCart);
-    addToDatabaseCart(product.key, 1);
+    const sameProduct = newCart.filter((pd) => pd.key === product.key);
+    const count = sameProduct.length;
+    addToDatabaseCart(product.key, count);
   };
   return (
     <div className={styles.shopContainer}>
