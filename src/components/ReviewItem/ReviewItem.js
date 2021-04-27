@@ -1,10 +1,12 @@
 import React from 'react';
+import styles from './ReviewItem.module.css';
 
-const ReviewItem = (props) => {
-  console.log(props);
+const ReviewItem = ({ product }) => {
+  const { name, quantity } = product;
   return (
-    <div>
-      <h1>this is ReviewItem</h1>
+    <div className={styles.reviewItem}>
+      <h1 className={styles.productName}>{name}</h1>
+      <p>Quantity: {quantity}</p>
     </div>
   );
 };
