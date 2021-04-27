@@ -1,4 +1,6 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 import fakeData from '../../fakeData';
 import happyImage from '../../images/giphy.gif';
 import {
@@ -14,16 +16,21 @@ import styles from './Review.module.css';
 const Review = () => {
   const [cart, setCart] = useState([]);
   const [orderPlaced, setOrderPlaced] = useState(false);
+
+  const history = useHistory();
+
+  const handleProceedCheckout = () => {
+    setCart([]);
+    setOrderPlaced(true);
+    processOrder();
+    history.push('/shipment');
+  };
+
   const removeProduct = (productKey) => {
     console.log('remove clicked', productKey);
     const newCart = cart.filter((product) => product.key !== productKey);
     setCart(newCart);
     removeFromDatabaseCart(productKey);
-  };
-  const handlePlaceOrder = () => {
-    setCart([]);
-    setOrderPlaced(true);
-    processOrder();
   };
   useEffect(() => {
     const savedCart = getDatabaseCart();
@@ -49,8 +56,8 @@ const Review = () => {
       </div>
       <div>
         <Cart cart={cart}>
-          <button type="button" onClick={handlePlaceOrder} className={styles.cartButton}>
-            Place Order
+          <button type="button" onClick={handleProceedCheckout} className={styles.cartButton}>
+            Proceed Checkout
           </button>
         </Cart>
       </div>
