@@ -4,7 +4,8 @@ import { getDatabaseCart } from '../../utilities/databaseManager';
 const Review = () => {
   useEffect(() => {
     const savedCart = getDatabaseCart();
-    console.log(savedCart);
+    const productKeys = Object.keys(savedCart);
+    console.log(productKeys);
   }, []);
   return (
     <div>
