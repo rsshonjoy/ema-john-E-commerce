@@ -24,6 +24,8 @@ const LogIn = () => {
   });
 
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+
+  // private route
   const history = useHistory();
   const location = useLocation();
   const { from } = location.state || { from: { pathname: '/shipment' } };
