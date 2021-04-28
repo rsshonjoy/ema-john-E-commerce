@@ -33,18 +33,23 @@ const LogIn = () => {
   const location = useLocation();
   const { from } = location.state || { from: { pathname: '/shipment' } };
 
+  const handleResponse = (res, redirect) => {
+    setUser(res);
+    setLoggedInUser(res);
+    if (redirect) {
+      history.replace(from);
+    }
+  };
+
   const googleSignIn = () => {
     handleGoogleSignIn().then((res) => {
-      setUser(res);
-      setLoggedInUser(res);
-      history.replace(from);
+      handleResponse(res, true);
     });
   };
 
   const signOut = () => {
     handleSignOut().then((res) => {
-      setUser(res);
-      setLoggedInUser(res);
+      handleResponse(res, false);
     });
   };
 
@@ -71,17 +76,13 @@ const LogIn = () => {
   const handleSubmit = (e) => {
     if (newUser && user.email && user.password) {
       createUserWithEmailAddPassword().then((res) => {
-        setUser(res);
-        setLoggedInUser(res);
-        history.replace(from);
+        handleResponse(res, true);
       });
     }
 
     if (!newUser && user.email && user.password) {
       signInWithEmailAndPassword(user.email, user.password).then((res) => {
-        setUser(res);
-        setLoggedInUser(res);
-        history.replace(from);
+        handleResponse(res, true);
       });
     }
     e.preventDefault();
@@ -113,7 +114,7 @@ const LogIn = () => {
       {/* <h3>Welcome, {user.name}</h3>
             <p>Your email: {user.email}</p>
             <p>Your password: {user.password}</p> */}
-      <form className={styles.loginBox} action="index.html" method="post" onSubmit={handleSubmit}>
+      <form className={styles.loginBox} onSubmit={handleSubmit}>
         <h1>{newUser ? 'Sign Up' : 'Sign In'}</h1>
         {newUser && (
           <input type="text" name="name" onBlur={handleBlur} placeholder="Name" required />
