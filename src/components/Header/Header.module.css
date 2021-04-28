@@ -21,3 +21,18 @@
   transition: 0.5s;
   border-radius: 2px;
 }
+.logOut {
+  border: 0;
+  background: none;
+  margin: 10px auto;
+  border: 2px solid #da1919;
+  padding: 14px 30px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+}
+.logOut:hover {
+  background-color: #da1919;
+}

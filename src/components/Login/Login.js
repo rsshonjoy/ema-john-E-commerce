@@ -75,7 +75,7 @@ const LogIn = () => {
 
   const handleSubmit = (e) => {
     if (newUser && user.email && user.password) {
-      createUserWithEmailAddPassword().then((res) => {
+      createUserWithEmailAddPassword(user.name, user.email, user.password).then((res) => {
         handleResponse(res, true);
       });
     }
