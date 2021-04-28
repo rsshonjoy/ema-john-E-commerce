@@ -90,7 +90,7 @@ const LogIn = () => {
 
   return (
     <div className={styles.pagesBody}>
-      {user.isSignIn ? (
+      {/* {user.isSignIn ? (
         <button type="button" onClick={signOut}>
           Sign Out
         </button>
@@ -108,7 +108,7 @@ const LogIn = () => {
         </div>
       )}
       <br />
-      <br />
+      <br /> */}
 
       {/* Login form */}
       {/* <h3>Welcome, {user.name}</h3>
